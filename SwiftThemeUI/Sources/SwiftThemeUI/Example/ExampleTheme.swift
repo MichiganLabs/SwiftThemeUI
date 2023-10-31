@@ -1,6 +1,6 @@
 import SwiftUI
 
-public protocol Theme {
+public protocol ExampleTheme {
   var TextAccent: Color { get }
   var TextPrimary: Color { get }
   var BodyFont: Font { get }
@@ -8,14 +8,14 @@ public protocol Theme {
 }
 
 
-class LightTheme : Theme {
+class LightTheme : ExampleTheme {
   let TextAccent: Color = .red
   let TextPrimary: Color = .blue
   let BodyFont: Font = .system(size: 16, weight: .thin)
   let CardRadius: CGFloat = 12
 }
 
-class DarkTheme : Theme {
+class DarkTheme : ExampleTheme {
   let TextAccent: Color = .yellow
   let TextPrimary: Color = .white
   let BodyFont: Font = .system(size: 14, weight: .bold)

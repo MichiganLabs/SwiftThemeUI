@@ -6,21 +6,33 @@ import PackageDescription
 let package = Package(
     name: "SwiftThemeUI",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v16),
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "SwiftThemeUI",
-            targets: ["SwiftThemeUI"]),
+            targets: ["SwiftThemeUI"]
+        ),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SwiftThemeUI"),
+            name: "SwiftThemeUI",
+            plugins: [
+                .plugin(name: "ThemeTypePlugin")
+            ]
+        ),
+        .executableTarget(
+            name: "CodeGenerator"
+        ),
+        .plugin(
+            name: "ThemeTypePlugin",
+            capability: .buildTool(),
+            dependencies: ["CodeGenerator"]
+        ),
         .testTarget(
             name: "SwiftThemeUITests",
-            dependencies: ["SwiftThemeUI"]),
+            dependencies: ["SwiftThemeUI"]
+        ),
     ]
 )

@@ -25,11 +25,18 @@ class LightTheme : Theme {
 }
 ```
 
-You can simply provide your theme to the `ThemeManager` and have it handle the rest!
+Add a `ThemeSource.json` file to the root of your target that identifies the protocol you'd like to use.
+```json
+{
+    "name": "Theme"
+}
+```
+
+Then, you can simply provide your theme to the `ThemeManager` and have it handle the rest!
 ```swift
 
 struct RootView: View {
-  @StateObject var manager = ThemeManager<Theme>(.static(LightTheme()))
+  @StateObject var manager = ThemeManager(.static(LightTheme()))
 
   var body: some View {
     ContentView()
@@ -41,10 +48,10 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Hello World")
-                .foregroundColor(alias: \Theme.TextColor)
-                .font(alias: \Theme.BodyFont)
+                .foregroundColor(alias: \.TextColor)
+                .font(alias: \.BodyFont)
         }
-        .cornerRadius(alias: \Theme.CardRadius)
+        .cornerRadius(alias: \.CardRadius)
     }
 }
 ```
@@ -56,10 +63,10 @@ struct ContentView: View {
 You can change themes easily during the runtime of your application by simply setting the `current` property of the `ThemeManager`. If you would like to have your theme follow the `ColorSheme` of the application, simply provide a `.dynamic` theme to the manager and it will automatically update to the specified theme as the system updates.
 ```swift
 // Instantiation
-@StateObject var manager = ThemeManager<Theme>(.dynamic(light: LightTheme(), dark: DarkTheme()))
+@StateObject var manager = ThemeManager(.dynamic(light: LightTheme(), dark: DarkTheme()))
 
 // Or, update the existing manager with a new theme
-self.manager.current = .dynamic(light: LightTheme(), dark: DarkTheme())
+self.manager.appearance = .dynamic(light: LightTheme(), dark: DarkTheme())
 ```
 
 ## Theme Override
@@ -67,7 +74,7 @@ There are some situations where you might want a specific component to never cha
 
 ```swift
 Text("Hello World")
-    .foregroundColor(alias: \Theme.TextAccent)
+    .foregroundColor(alias: \.TextAccent)
     // theme override
     .environment(\.theme, LightTheme())
 ```

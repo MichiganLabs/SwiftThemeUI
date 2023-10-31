@@ -1,9 +1,9 @@
 import SwiftUI
 
-public typealias ThemeAlias = AnyKeyPath
+typealias ThemeAlias = AnyKeyPath
 
 protocol ThemeModifier {
-  var theme: Any? { get }
+  var theme: GeneratedThemeType { get }
   var element: ThemeAlias { get }
 
   var color: Color? { get }

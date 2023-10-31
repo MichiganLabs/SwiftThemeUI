@@ -1,25 +1,25 @@
 import SwiftUI
 
 public extension View {
-  func themeManaging<T>(_ manager: ThemeManager<T>) -> some View {
+  func themeManaging(_ manager: ThemeManager) -> some View {
     self.modifier(ThemeProvidingViewModifier(manager: manager))
   }
 }
 
 public extension View {
-  func accentColor<T>(alias: KeyPath<T, Color>) -> some View {
+  func accentColor(alias: KeyPath<GeneratedThemeType, Color>) -> some View {
     self.modifier(AccentColorModifier(element: alias))
   }
 
-  func foregroundColor<T>(alias: KeyPath<T, Color>) -> some View {
+  func foregroundColor(alias: KeyPath<GeneratedThemeType, Color>) -> some View {
     self.modifier(ForegroundModifier(element: alias))
   }
 
-  func cornerRadius(alias: ThemeAlias) -> some View {
+  func cornerRadius(alias: KeyPath<GeneratedThemeType, CGFloat>) -> some View {
     self.modifier(CornerRadiusModifier(element: alias))
   }
 
-  func font(alias: ThemeAlias) -> some View {
+  func font(alias: KeyPath<GeneratedThemeType, Font>) -> some View {
     self.modifier(FontModifier(element: alias))
   }
 }
