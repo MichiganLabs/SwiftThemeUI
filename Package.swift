@@ -5,19 +5,18 @@ let package = Package(
     name: "SwiftThemeUI",
     platforms: [
         .iOS(.v16),
+        .macOS(.v12),
     ],
     products: [
         .library(
             name: "SwiftThemeUI",
             targets: ["SwiftThemeUI"]
         ),
+        .plugin(name: "ThemeTypePlugin", targets: ["ThemeTypePlugin"])
     ],
     targets: [
         .target(
-            name: "SwiftThemeUI",
-            plugins: [
-                .plugin(name: "ThemeTypePlugin")
-            ]
+            name: "SwiftThemeUI"
         ),
         .executableTarget(
             name: "CodeGenerator"

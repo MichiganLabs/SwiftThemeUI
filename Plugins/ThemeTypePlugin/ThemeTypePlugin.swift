@@ -9,7 +9,7 @@ struct ThemeTypePlugin: BuildToolPlugin {
   ) async throws -> [PackagePlugin.Command] {
     // Look for a `ThemeSource.swift` file in the parent directories
     guard let inputPath = context.package.directory.firstFileInParentDirectories(fileName: "ThemeSource.swift") else {
-      throw ThemeTypePluginError.themeSourceNotFound
+      return []
     }
 
     // Specify a location for the output file
