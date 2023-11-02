@@ -8,15 +8,27 @@ struct CodeGenerator {
     guard CommandLine.arguments.count == 3 else {
       throw CodeGeneratorError.invalidArguments
     }
+
     // arguments[0] is the path to this command line tool
     let input = URL(filePath: CommandLine.arguments[1])
     let output = URL(filePath: CommandLine.arguments[2])
 
-    let jsonData = try Data(contentsOf: input)
-    let enumFormat = try JSONDecoder().decode(JSONFormat.self, from: jsonData)
+    let swiftData = try Data(contentsOf: input)
+    guard let swiftString = String(data: swiftData, encoding: .utf8) else {
+      throw CodeGeneratorError.invalidData
+    }
+
+    let regex = try Regex("protocol \\s*(\\S+)")
+    guard let match = swiftString.firstMatch(of: regex) else {
+      throw CodeGeneratorError.protocolNotFound
+    }
+
+    let protocolName = swiftString[match.output[1].range!]
 
     let code = """
-      public typealias GeneratedThemeType = \(enumFormat.name)
+    \(swiftString)
+
+    public typealias GeneratedThemeType = \(protocolName)
     """
 
     guard let data = code.data(using: .utf8) else {
@@ -26,12 +38,9 @@ struct CodeGenerator {
   }
 }
 
-struct JSONFormat: Decodable {
-  let name: String
-}
-
 @available(macOS 13.00.0, *)
 enum CodeGeneratorError: Error {
   case invalidArguments
   case invalidData
+  case protocolNotFound
 }

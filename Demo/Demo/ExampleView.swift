@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import SwiftThemeUI
 
 struct ThemeView: View {
   @CurrentTheme private var theme: ExampleTheme
@@ -53,21 +54,4 @@ struct ThemeSwitcherView: View {
       }
     }
   }
-}
-
-struct RootView: View {
-  @StateObject var manager = ThemeManager(.dynamic(light: LightTheme(), dark: DarkTheme()))
-
-  var body: some View {
-    VStack {
-      ThemeView()
-      Spacer()
-      ThemeSwitcherView()
-    }
-    .themeManaging(self.manager)
-  }
-}
-
-#Preview {
-  RootView()
 }
