@@ -31,6 +31,8 @@ struct CodeGenerator {
     public typealias GeneratedThemeType = \(protocolName)
     """
 
+    print("Generated code:\n\n\(code)")
+
     guard let data = code.data(using: .utf8) else {
       throw CodeGeneratorError.invalidData
     }
