@@ -10,9 +10,9 @@
 		870687B82AF279E6002735DF /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870687B72AF279E6002735DF /* DemoApp.swift */; };
 		870687BA2AF279E6002735DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870687B92AF279E6002735DF /* ContentView.swift */; };
 		870687C82AF279F8002735DF /* SwiftThemeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 870687C72AF279F8002735DF /* SwiftThemeUI */; };
-		870687CA2AF279F8002735DF /* CodeGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 870687C92AF279F8002735DF /* CodeGenerator */; };
 		870687CD2AF27A3B002735DF /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870687CB2AF27A3B002735DF /* ExampleView.swift */; };
 		870687CE2AF27A3B002735DF /* ExampleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870687CC2AF27A3B002735DF /* ExampleTheme.swift */; };
+		876A3A7F2AF9DCAB00F8F4EA /* ThemeSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876A3A7E2AF9DCAB00F8F4EA /* ThemeSwitcherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +22,7 @@
 		870687BD2AF279E7002735DF /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
 		870687CB2AF27A3B002735DF /* ExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
 		870687CC2AF27A3B002735DF /* ExampleTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleTheme.swift; sourceTree = "<group>"; };
+		876A3A7E2AF9DCAB00F8F4EA /* ThemeSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSwitcherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,7 +31,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				870687C82AF279F8002735DF /* SwiftThemeUI in Frameworks */,
-				870687CA2AF279F8002735DF /* CodeGenerator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,9 +57,10 @@
 			isa = PBXGroup;
 			children = (
 				870687B72AF279E6002735DF /* DemoApp.swift */,
+				870687B92AF279E6002735DF /* ContentView.swift */,
 				870687CC2AF27A3B002735DF /* ExampleTheme.swift */,
 				870687CB2AF27A3B002735DF /* ExampleView.swift */,
-				870687B92AF279E6002735DF /* ContentView.swift */,
+				876A3A7E2AF9DCAB00F8F4EA /* ThemeSwitcherView.swift */,
 				870687BD2AF279E7002735DF /* Demo.entitlements */,
 			);
 			path = Demo;
@@ -83,7 +84,6 @@
 			name = Demo;
 			packageProductDependencies = (
 				870687C72AF279F8002735DF /* SwiftThemeUI */,
-				870687C92AF279F8002735DF /* CodeGenerator */,
 			);
 			productName = Demo;
 			productReference = 870687B42AF279E6002735DF /* Demo.app */;
@@ -143,6 +143,7 @@
 				870687CE2AF27A3B002735DF /* ExampleTheme.swift in Sources */,
 				870687BA2AF279E6002735DF /* ContentView.swift in Sources */,
 				870687B82AF279E6002735DF /* DemoApp.swift in Sources */,
+				876A3A7F2AF9DCAB00F8F4EA /* ThemeSwitcherView.swift in Sources */,
 				870687CD2AF27A3B002735DF /* ExampleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,10 +373,6 @@
 		870687C72AF279F8002735DF /* SwiftThemeUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftThemeUI;
-		};
-		870687C92AF279F8002735DF /* CodeGenerator */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CodeGenerator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -2,14 +2,14 @@ import SwiftUI
 
 /// ThemeManager helps manage the themes of your application. To get started, simply instantiate ThemeManager and
 /// provide the manager to the root view of your application using the `.themeManaging()` view modifier.
-public class ThemeManager: ObservableObject {
+public class ThemeManager<T>: ObservableObject {
   public enum Appearance {
-    case dynamic(light: GeneratedThemeType, dark: GeneratedThemeType)
-    case `static`(GeneratedThemeType)
+    case dynamic(light: T, dark: T)
+    case `static`(T)
   }
 
   /// The currently selected theme. To update the theme, set `appearance` with your desired effect.
-  @Published public private(set) var current: GeneratedThemeType
+  @Published public private(set) var current: T
 
   /// Appearance drives the `current` theme and how/when it is updated.
   @Published public var appearance: Appearance {
@@ -43,7 +43,7 @@ extension ThemeManager {
     self.current = Self.determineCurrentTheme(appearance: self.appearance, colorScheme: self.systemColorScheme)
   }
 
-  private static func determineCurrentTheme(appearance: Appearance, colorScheme: ColorScheme) -> GeneratedThemeType {
+  private static func determineCurrentTheme(appearance: Appearance, colorScheme: ColorScheme) -> T {
     switch appearance {
     case .dynamic(let light, let dark):
       switch colorScheme {

@@ -3,7 +3,9 @@ import SwiftUI
 typealias ThemeAlias = AnyKeyPath
 
 protocol ThemeModifier {
-  var theme: GeneratedThemeType { get }
+  associatedtype ThemeType
+
+  var theme: ThemeType { get }
   var element: ThemeAlias { get }
 
   var color: Color? { get }

@@ -3,7 +3,7 @@ import SwiftThemeUI
 
 @main
 struct DemoApp: App {
-  @StateObject var manager = ThemeManager(.dynamic(light: LightTheme(), dark: DarkTheme()))
+  @StateObject var manager = ThemeManager<ExampleTheme>(.dynamic(light: LightTheme(), dark: DarkTheme()))
 
   var body: some Scene {
     WindowGroup {

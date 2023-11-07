@@ -3,13 +3,9 @@ import SwiftUI
 struct ContentView: View {
   var body: some View {
     VStack {
-      ThemeView()
+      ExampleView()
       Spacer()
       ThemeSwitcherView()
     }
   }
-}
-
-#Preview {
-  ContentView()
 }

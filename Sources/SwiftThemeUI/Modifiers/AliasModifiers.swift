@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct AccentColorModifier: ViewModifier, ThemeModifier {
-  @CurrentTheme var theme: GeneratedThemeType
+struct AccentColorModifier<T>: ViewModifier, ThemeModifier {
+  @CurrentTheme var theme: T
 
   let element: ThemeAlias
 
@@ -11,8 +11,8 @@ struct AccentColorModifier: ViewModifier, ThemeModifier {
   }
 }
 
-struct ForegroundModifier: ViewModifier, ThemeModifier {
-  @CurrentTheme var theme: GeneratedThemeType
+struct ForegroundModifier<T>: ViewModifier, ThemeModifier {
+  @CurrentTheme var theme: T
 
   let element: ThemeAlias
 
@@ -22,8 +22,8 @@ struct ForegroundModifier: ViewModifier, ThemeModifier {
   }
 }
 
-struct CornerRadiusModifier: ViewModifier, ThemeModifier {
-  @CurrentTheme var theme: GeneratedThemeType
+struct CornerRadiusModifier<T>: ViewModifier, ThemeModifier {
+  @CurrentTheme var theme: T
 
   let element: ThemeAlias
 
@@ -33,8 +33,8 @@ struct CornerRadiusModifier: ViewModifier, ThemeModifier {
   }
 }
 
-struct FontModifier: ViewModifier, ThemeModifier {
-  @CurrentTheme var theme: GeneratedThemeType
+struct FontModifier<T>: ViewModifier, ThemeModifier {
+  @CurrentTheme var theme: T
 
   let element: ThemeAlias
 

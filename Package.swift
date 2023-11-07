@@ -12,19 +12,10 @@ let package = Package(
             name: "SwiftThemeUI",
             targets: ["SwiftThemeUI"]
         ),
-        .plugin(name: "ThemeTypePlugin", targets: ["ThemeTypePlugin"])
     ],
     targets: [
         .target(
             name: "SwiftThemeUI"
-        ),
-        .executableTarget(
-            name: "CodeGenerator"
-        ),
-        .plugin(
-            name: "ThemeTypePlugin",
-            capability: .buildTool(),
-            dependencies: ["CodeGenerator"]
         ),
         .testTarget(
             name: "SwiftThemeUITests",

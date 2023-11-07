@@ -1,9 +1,9 @@
 import SwiftUI
 
 /// A view modifier that sets up theme provider to be able to used across view hierarchy.
-struct ThemeProvidingViewModifier: ViewModifier {
+struct ThemeProvidingViewModifier<T>: ViewModifier {
     @Environment(\.colorScheme) var colorScheme
-    @ObservedObject var themeManager: ThemeManager
+    @ObservedObject var themeManager: ThemeManager<T>
 
     func body(content: Content) -> some View {
         content
@@ -17,7 +17,7 @@ struct ThemeProvidingViewModifier: ViewModifier {
           .environment(\.currentTheme, self.themeManager.current)
     }
 
-    init(manager: ThemeManager) {
+    init(manager: ThemeManager<T>) {
         self.themeManager = manager
     }
 }
