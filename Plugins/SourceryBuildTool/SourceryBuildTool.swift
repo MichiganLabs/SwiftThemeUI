@@ -2,27 +2,17 @@ import Foundation
 import PackagePlugin
 
 @main
-struct MockPlugin: BuildToolPlugin {
+struct SourceryBuildTool: BuildToolPlugin {
   func createBuildCommands(
     context: PackagePlugin.PluginContext,
     target: PackagePlugin.Target
   ) async throws -> [PackagePlugin.Command] {
 
-
     let sourceDir = target.directory
     let templateDir = target.directory.appending("Templates")
-    let outputDir = context.pluginWorkDirectory
+//    let outputDir = context.pluginWorkDirectory
     let outputFile = context.pluginWorkDirectory.appending("Generated.swift")
 
-    print("================================")
-    print(target.directory)
-    print(context.pluginWorkDirectory)
-    print(outputFile)
-
-//    Diagnostics.error("========================")
-
-//    let output = context.pluginWorkDirectory.appending("GeneratedThemeType.swift")
-    // , "--templates \(templateDir)", "--output \(output)
     return [
       .buildCommand(
         displayName: "Generate Mocks",
@@ -31,7 +21,7 @@ struct MockPlugin: BuildToolPlugin {
           "--sources", sourceDir,
           "--templates", templateDir,
           "--output", outputFile,
-//          "--cacheBasePath", outputDir,
+//          "--cacheBasePath", outputDir, // enable when we can use a newer version of sourcery
           "--verbose",
           "--disableCache"
         ],

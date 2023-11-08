@@ -1,9 +1,6 @@
 // swift-tools-version: 5.9
 import PackageDescription
 
-// FINALLY, an example:
-// https://www.polpiella.dev/sourcery-swift-package-command-plugin
-
 let package = Package(
     name: "SwiftThemeUI",
     platforms: [
@@ -15,7 +12,7 @@ let package = Package(
             name: "SwiftThemeUI",
             targets: ["SwiftThemeUI"]
         ),
-        .plugin(name: "MockPlugin", targets: ["MockPlugin"]),
+        .plugin(name: "SourceryBuildTool", targets: ["SourceryBuildTool"]),
         .plugin(name: "SourceryCommand", targets: ["SourceryCommand"])
     ],
     dependencies: [
@@ -29,10 +26,9 @@ let package = Package(
             ]
         ),
         .plugin(
-            name: "MockPlugin",
+            name: "SourceryBuildTool",
             capability: .buildTool(),
             dependencies: [
-//              .target(name: "SourceryBinary", condition: .when(platforms: [.macOS])),
               "SourceryBinary"
             ]
         ),
@@ -51,14 +47,11 @@ let package = Package(
             ),
             dependencies: ["SourceryBinary"]
         ),
-//        .binaryTarget(
-//          name: "SourceryBinary",
-//          url: "https://github.com/krzysztofzablocki/Sourcery/releases/download/2.0.2/sourcery-2.0.2.artifactbundle.zip",
-//          checksum: "28d2c35db0cdb0c242b4faa042c137ede4f1d4d242b77ee6363530d3a23d6baf"
-//        ),
-
-        .binaryTarget(name: "SourceryBinary", path: "Sourcery.artifactbundle"),
-//          .binaryTarget(name: "SourceryBinary", path: "sourcery.artifactbundle"),
+        .binaryTarget(
+          name: "SourceryBinary",
+          url: "https://github.com/krzysztofzablocki/Sourcery/releases/download/2.0.2/sourcery-2.0.2.artifactbundle.zip",
+          checksum: "28d2c35db0cdb0c242b4faa042c137ede4f1d4d242b77ee6363530d3a23d6baf"
+        ),
         .testTarget(
             name: "SwiftThemeUITests",
             dependencies: ["SwiftThemeUI"]
