@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 public struct ThemeModifierKey: EnvironmentKey {
-  public static var defaultValue: Any? = nil
+  public static var defaultValue: Any?
 }
 
 public extension EnvironmentValues {

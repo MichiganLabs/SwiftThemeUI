@@ -1,5 +1,13 @@
 import SwiftUI
 
+protocol AutoCases {}
+
+enum JohnTest: AutoCases {
+  case one
+  case two
+  case three
+}
+
 struct AccentColorModifier<T>: ViewModifier, ThemeModifier {
   @CurrentTheme var theme: T
 
@@ -43,6 +51,3 @@ struct FontModifier<T>: ViewModifier, ThemeModifier {
     content.font(self.font)
   }
 }
-
-
-
