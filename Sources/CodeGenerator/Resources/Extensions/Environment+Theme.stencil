@@ -1,0 +1,11 @@
+public struct ThemeModifierKey: EnvironmentKey {
+  public static var defaultValue: ThemeModeType = {{ defaultMode }}()
+}
+
+public extension EnvironmentValues {
+  /// Computed variable used for accessing the environment's currently selected Theme
+  var currentTheme: ThemeModifierKey.Value {
+    get { self[ThemeModifierKey.self] }
+    set { self[ThemeModifierKey.self] = newValue }
+  }
+}
