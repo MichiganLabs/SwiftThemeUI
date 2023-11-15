@@ -1,24 +1,12 @@
-typealias ThemeAlias = AnyKeyPath
-
 protocol ThemeModifier {
-  var theme: ThemeModeType { get }
-  var element: ThemeAlias { get }
+  associatedtype AliasType
 
-  var color: Color? { get }
-  var radius: CGFloat? { get }
-  var font: Font? { get }
+  var theme: ThemeModeType { get }
+  var alias: KeyPath<ThemeModeType, AliasType> { get }
 }
 
 extension ThemeModifier {
-  var color: Color? {
-    return self.theme[keyPath: self.element] as? Color
-  }
-
-  var radius: CGFloat? {
-    return self.theme[keyPath: self.element] as? CGFloat
-  }
-
-  var font: Font? {
-    return self.theme[keyPath: self.element] as? Font
+  var element: AliasType {
+    return self.theme[keyPath: self.alias]
   }
 }

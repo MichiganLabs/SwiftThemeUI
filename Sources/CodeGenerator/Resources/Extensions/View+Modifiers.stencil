@@ -6,18 +6,26 @@ public extension View {
 
 public extension View {
   func accentColor(alias: KeyPath<ThemeModeType, Color>) -> some View {
-    self.modifier(AccentColorModifier(element: alias))
+    self.modifier(AccentColorModifier(alias: alias))
   }
 
   func foregroundColor(alias: KeyPath<ThemeModeType, Color>) -> some View {
-    self.modifier(ForegroundModifier(element: alias))
+    self.modifier(ForegroundModifier(alias: alias))
   }
 
   func cornerRadius(alias: KeyPath<ThemeModeType, CGFloat>) -> some View {
-    self.modifier(CornerRadiusModifier(element: alias))
+    self.modifier(CornerRadiusModifier(alias: alias))
   }
 
   func font(alias: KeyPath<ThemeModeType, Font>) -> some View {
-    self.modifier(FontModifier(element: alias))
+    self.modifier(FontModifier(alias: alias))
+  }
+
+    func background(alias: KeyPath<ThemeModeType, Color>) -> some View {
+    self.modifier(BackgroundModifier(alias: alias))
+  }
+
+  func tint(alias: KeyPath<ThemeModeType, Color>) -> some View {
+    self.modifier(TintModifier(alias: alias))
   }
 }

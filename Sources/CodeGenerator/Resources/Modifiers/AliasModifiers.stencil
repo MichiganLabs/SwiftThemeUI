@@ -1,43 +1,76 @@
 struct AccentColorModifier: ViewModifier, ThemeModifier {
   @Environment(\.currentTheme) var theme: ThemeModeType
 
-  let element: ThemeAlias
+  let alias: KeyPath<ThemeModeType, Color>
 
   @ViewBuilder
   func body(content: Content) -> some View {
-    content.accentColor(self.color)
+    content.accentColor(self.element)
   }
 }
 
 struct ForegroundModifier: ViewModifier, ThemeModifier {
   @Environment(\.currentTheme) var theme: ThemeModeType
 
-  let element: ThemeAlias
+  let alias: KeyPath<ThemeModeType, Color>
 
   @ViewBuilder
   func body(content: Content) -> some View {
-    content.foregroundColor(self.color)
+    content.foregroundColor(self.element)
   }
 }
 
 struct CornerRadiusModifier: ViewModifier, ThemeModifier {
   @Environment(\.currentTheme) var theme: ThemeModeType
 
-  let element: ThemeAlias
+  let alias: KeyPath<ThemeModeType, CGFloat>
 
   @ViewBuilder
   func body(content: Content) -> some View {
-    content.cornerRadius(self.radius ?? 0)
+    content.cornerRadius(self.element)
   }
 }
 
 struct FontModifier: ViewModifier, ThemeModifier {
   @Environment(\.currentTheme) var theme: ThemeModeType
 
-  let element: ThemeAlias
+  let alias: KeyPath<ThemeModeType, Font>
 
   @ViewBuilder
   func body(content: Content) -> some View {
-    content.font(self.font)
+    content.font(self.element)
+  }
+}
+
+struct BackgroundModifier: ViewModifier, ThemeModifier {
+  @Environment(\.currentTheme) var theme: ThemeModeType
+
+  let alias: KeyPath<ThemeModeType, Color>
+
+  @ViewBuilder
+  func body(content: Content) -> some View {
+    content.background(self.element)
+  }
+}
+
+struct FillModifier: ViewModifier, ThemeModifier {
+  @Environment(\.currentTheme) var theme: ThemeModeType
+
+  let alias: KeyPath<ThemeModeType, Color>
+
+  @ViewBuilder
+  func body(content: Content) -> some View {
+    content.background(self.element)
+  }
+}
+
+struct TintModifier: ViewModifier, ThemeModifier {
+  @Environment(\.currentTheme) var theme: ThemeModeType
+
+  let alias: KeyPath<ThemeModeType, Color>
+
+  @ViewBuilder
+  func body(content: Content) -> some View {
+    content.tint(self.element)
   }
 }

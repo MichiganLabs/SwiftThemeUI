@@ -23,7 +23,6 @@ struct ExampleView: View {
 
       Text("Hello World")
         .foregroundColor(self.theme.TextAccent)
-        .foregroundColor(alias: \.TextAccent)
         .font(alias: \.BodyFont)
         .padding(12)
         .background(.orange)
