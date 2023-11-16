@@ -61,13 +61,13 @@ struct ContentView: View {
 # Detailed Usage
 
 ## Changing Themes
-You can change themes easily during the runtime of your application by simply setting the `themeType` property of the `ThemeManager`. If you would like to have your theme follow the `ColorSheme` of the application, simply provide a `.dynamic` theme to the manager and it will automatically update to the specified theme as the system updates.
+You can change themes easily during the runtime of your application by simply setting the `theme` property of the `ThemeManager`. If you would like to have your theme follow the `ColorSheme` of the application, simply provide a `.dynamic` theme to the manager and it will automatically update to the specified theme as the system updates.
 ```swift
 // Instantiation
 @StateObject var manager = ThemeManager(.dynamic(light: BrandThemeLightMode(), dark: BrandThemeDarkMode()))
 
 // Or, update the existing manager with a new theme
-self.manager.themeType = .dynamic(light: BrandThemeLightMode(), dark: BrandThemeDarkMode())
+self.manager.theme = .dynamic(light: BrandThemeLightMode(), dark: BrandThemeDarkMode())
 ```
 
 ## Theme Override

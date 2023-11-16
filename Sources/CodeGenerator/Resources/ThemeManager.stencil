@@ -1,16 +1,16 @@
+public enum ThemeType {
+  case dynamic(light: ThemeModeType, dark: ThemeModeType)
+  case `static`(ThemeModeType)
+}
+
 /// ThemeManager helps manage the themes of your application. To get started, simply instantiate ThemeManager and
 /// provide the manager to the root view of your application using the `.themeManaging()` view modifier.
 public class ThemeManager: ObservableObject {
-  public enum ThemeType {
-    case dynamic(light: ThemeModeType, dark: ThemeModeType)
-    case `static`(ThemeModeType)
-  }
-
-  /// The currently selected theme. To update the theme, set `appearance` with your desired effect.
+  /// The currently selected theme mode. To update the theme, set `theme` with your desired effect.
   @Published public private(set) var current: ThemeModeType
 
-  /// ThemeType drives the `current` theme and how/when it is updated.
-  @Published public var themeType: ThemeType {
+  /// Drives the `current` theme and how/when it is updated.
+  @Published public var theme: ThemeType {
     didSet {
       self.updateCurrentTheme()
     }
@@ -23,9 +23,9 @@ public class ThemeManager: ObservableObject {
     }
   }
 
-  public init(_ themeType: ThemeType) {
-    self.themeType = themeType
-    self.current = Self.determineCurrentTheme(appearance: themeType, colorScheme: self.systemColorScheme)
+  public init(_ theme: ThemeType) {
+    self.theme = theme
+    self.current = Self.determineCurrentTheme(theme: theme, colorScheme: self.systemColorScheme)
   }
 }
 
@@ -38,11 +38,11 @@ extension ThemeManager {
   }
 
   private func updateCurrentTheme() {
-    self.current = Self.determineCurrentTheme(appearance: self.themeType, colorScheme: self.systemColorScheme)
+    self.current = Self.determineCurrentTheme(theme: self.theme, colorScheme: self.systemColorScheme)
   }
 
-  private static func determineCurrentTheme(appearance: ThemeType, colorScheme: ColorScheme) -> ThemeModeType {
-    switch appearance {
+  private static func determineCurrentTheme(theme: ThemeType, colorScheme: ColorScheme) -> ThemeModeType {
+    switch theme {
     case .dynamic(let light, let dark):
       switch colorScheme {
       case .light:

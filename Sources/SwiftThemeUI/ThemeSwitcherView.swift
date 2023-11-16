@@ -6,15 +6,15 @@ struct ThemeSwitcherView: View {
   var body: some View {
     VStack {
       Button("Light") {
-        self.manager.themeType = .static(LightTheme())
+        self.manager.theme = .static(ThemeLightMode())
       }
 
       Button("Dark") {
-        self.manager.themeType = .static(DarkTheme())
+        self.manager.theme = .static(ThemeDarkMode())
       }
 
       Button("System") {
-        self.manager.themeType = .dynamic(light: LightTheme(), dark: DarkTheme())
+        self.manager.theme = BrandTheme
       }
     }
   }

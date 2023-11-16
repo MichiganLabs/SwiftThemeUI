@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExampleView: View {
-  @Environment(\.currentTheme) private var theme: ExampleTheme
+  @Environment(\.currentTheme) private var theme
 
   var body: some View {
     VStack(spacing: 8) {
@@ -19,23 +19,14 @@ struct ExampleView: View {
         .background(.orange)
         .cornerRadius(alias: \.CardRadius)
         // theme override
-        .environment(\.currentTheme, LightTheme())
-
-      Text("Hello World")
-        .foregroundColor(self.theme.TextAccent)
-        .font(alias: \.BodyFont)
-        .padding(12)
-        .background(.orange)
-        .cornerRadius(alias: \.CardRadius)
-        // theme override
-        .environment(\.currentTheme, LightTheme())
+        .environment(\.currentTheme, ThemeDarkMode())
     }
   }
 }
 
 #Preview {
   ExampleView()
-    .environment(\.currentTheme, LightTheme())
+    .environment(\.currentTheme, ThemeLightMode())
 }
 
 

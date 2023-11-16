@@ -33,23 +33,29 @@ struct CodeGenerator {
     let fsLoader = FileSystemLoader(paths: [Path(resourcesPath)] )
     let environment = Environment(loader: fsLoader)
 
-    var contents = """
+    var output = ""
+
+    // Imports
+    output += """
     import SwiftUI
 
     """
 
+    // File contents
     for fileName in fileNames {
       let file = try environment.renderTemplate(name: String(fileName), context: context)
-      contents += """
-      
+      output += """
+
       // Start of \(String(fileName))
       // ==============================================
       \(file)
       """
     }
 
+    print("Generated File:\n\n\(output)")
+
     guard
-      let data = contents.data(using: .utf8)
+      let data = output.data(using: .utf8)
     else {
       throw CodeGeneratorError.invalidData
     }
