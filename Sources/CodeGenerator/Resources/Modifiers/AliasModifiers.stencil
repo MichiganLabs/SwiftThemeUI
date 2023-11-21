@@ -60,7 +60,7 @@ struct FillModifier: ViewModifier, ThemeModifier {
 
   @ViewBuilder
   func body(content: Content) -> some View {
-    content.background(self.element)
+    content.fill(self.element)
   }
 }
 
