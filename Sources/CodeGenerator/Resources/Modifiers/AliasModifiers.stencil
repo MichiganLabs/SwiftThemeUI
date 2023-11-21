@@ -53,17 +53,6 @@ struct BackgroundModifier: ViewModifier, ThemeModifier {
   }
 }
 
-struct FillModifier: ViewModifier, ThemeModifier {
-  @Environment(\.currentTheme) var theme: ThemeModeType
-
-  let alias: KeyPath<ThemeModeType, Color>
-
-  @ViewBuilder
-  func body(content: Content) -> some View {
-    content.fill(self.element)
-  }
-}
-
 struct TintModifier: ViewModifier, ThemeModifier {
   @Environment(\.currentTheme) var theme: ThemeModeType
 

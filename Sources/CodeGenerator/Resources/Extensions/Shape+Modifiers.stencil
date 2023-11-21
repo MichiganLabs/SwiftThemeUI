@@ -1,5 +1,0 @@
-public extension Shape {
-  func fill(alias: KeyPath<ThemeModeType, Color>) -> some View {
-    self.modifier(FillModifier(alias: alias))
-  }
-}
