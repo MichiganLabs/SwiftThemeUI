@@ -20,6 +20,12 @@ struct ExampleView: View {
         .cornerRadius(alias: \.CardRadius)
         // theme override
         .environment(\.currentTheme, ThemeDarkMode())
+
+      RoundedRectangle(
+        cornerSize: CGSize(width: 10, height: 10)
+      )
+      .fill(alias: \.TextAccent)
+      .frame(width: 50, height: 50)
     }
   }
 }

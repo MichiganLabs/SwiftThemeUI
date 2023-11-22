@@ -1,0 +1,11 @@
+public struct ThemeReader<Result: View, Element>: View, ThemeModifier {
+  @Environment(\.currentTheme) internal var theme
+
+  let alias: KeyPath<ThemeModeType, Element>
+
+  let apply: (Element) -> Result
+
+  public var body: some View {
+    self.apply(self.element)
+  }
+}

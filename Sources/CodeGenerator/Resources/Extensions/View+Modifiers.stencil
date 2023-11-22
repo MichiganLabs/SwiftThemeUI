@@ -1,3 +1,11 @@
+extension Shape {
+  func fill(alias: KeyPath<ThemeModeType, Color>) -> some View {
+    ThemeReader(alias: alias) {
+      self.fill($0)
+    }
+  }
+}
+
 public extension View {
   func themeManaging(_ manager: ThemeManager) -> some View {
     self.modifier(ThemeProvidingViewModifier(manager: manager))

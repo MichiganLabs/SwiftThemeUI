@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
-  @StateObject var manager = ThemeManager(BrandTheme)
-  
+  @StateObject var manager = ThemeManager(.static(ThemeDarkMode()))
+
   var body: some View {
     VStack {
       ExampleView()
