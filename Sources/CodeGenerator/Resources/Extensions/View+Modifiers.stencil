@@ -1,4 +1,4 @@
-extension Shape {
+public extension Shape {
   func fill(alias: KeyPath<ThemeModeType, Color>) -> some View {
     ThemeReader(alias: alias) {
       self.fill($0)
