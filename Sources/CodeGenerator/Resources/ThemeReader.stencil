@@ -1,9 +1,28 @@
-public struct ThemeReader<Result: View, Element>: View, ThemeModifier {
+public struct ThemeReader<Result: View>: View {
+  @Environment(\.currentTheme) internal var theme
+
+  let apply: (ThemeModeType) -> Result
+
+  public init(apply: @escaping (ThemeModeType) -> Result) {
+    self.apply = apply
+  }
+
+  public var body: some View {
+    self.apply(self.theme)
+  }
+}
+
+public struct ThemeAliasReader<Result: View, Element>: View, ThemeModifier {
   @Environment(\.currentTheme) internal var theme
 
   let alias: KeyPath<ThemeModeType, Element>
 
   let apply: (Element) -> Result
+
+  public init(_ alias: KeyPath<ThemeModeType, Element>, apply: @escaping (Element) -> Result) {
+    self.alias = alias
+    self.apply = apply
+  }
 
   public var body: some View {
     self.apply(self.element)

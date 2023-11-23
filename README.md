@@ -81,17 +81,33 @@ Text("Hello World")
 ```
 
 ## Usage Without Modifiers
-If you come across a situation where a modifier is not available for your intended purpose, you can still use your alias tokens by gaining access to the current theme object through the use of the `@CurrentTheme` property wrapper.
+If you come across a situation where a modifier is not available for your intended purpose, you can still use your theme and alias tokens by gaining access to the current theme object through the use of the `ThemeReader` and `ThemeAliasReader` respecitively.
+
+```
+ThemeReader { theme in
+  Text("Hello World")
+    .foregroundColor(theme.TextAccent)
+}
+```
+
+```
+ThemeAliasReader(\.TextAccent) { color in
+  Text("Hello World")
+    .foregroundColor(color)
+}
+```
+
+
+**Additionally...**
+There is a `currentTheme` environment property wrapper available to you. However, the use of this property wrapper is not recommended as it prevents the ability for you to override the theme provided by the `ThemeManger` with the `.environment` view modifier. 
 
 ```swift
 struct ContentView: View {
   @Environment(\.currentTheme) private var theme
 
   var body: some View {
-    VStack(spacing: 8) {
-      Text("Hello World")
-        .foregroundColor(self.theme.TextAccent)
-    }
+    Text("Hello World")
+      .foregroundColor(self.theme.TextAccent)
   }
 }
 

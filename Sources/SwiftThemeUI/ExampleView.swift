@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct ExampleView: View {
-  @Environment(\.currentTheme) private var theme
-
   var body: some View {
     VStack(spacing: 8) {
       Text("Hello World")
@@ -20,6 +18,15 @@ struct ExampleView: View {
         .cornerRadius(alias: \.CardRadius)
         // theme override
         .environment(\.currentTheme, ThemeDarkMode())
+
+      ThemeReader { theme in
+        Text("Hello World")
+          .foregroundColor(theme.TextAccent)
+          .font(theme.BodyFont)
+          .padding(12)
+          .background(.blue)
+          .cornerRadius(theme.CardRadius)
+      }
 
       RoundedRectangle(
         cornerSize: CGSize(width: 10, height: 10)

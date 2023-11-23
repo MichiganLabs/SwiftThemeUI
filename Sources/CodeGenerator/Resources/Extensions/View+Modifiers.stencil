@@ -1,12 +1,12 @@
 public extension Shape {
   func fill(alias: KeyPath<ThemeModeType, Color>) -> some View {
-    ThemeReader(alias: alias) {
+    ThemeAliasReader(alias) {
       self.fill($0)
     }
   }
 
   func stroke(alias: KeyPath<ThemeModeType, Color>, lineWidth: CGFloat = 1) -> some View {
-    ThemeReader(alias: alias) {
+    ThemeAliasReader(alias) {
       self.stroke($0, lineWidth: lineWidth)
     }
   }
