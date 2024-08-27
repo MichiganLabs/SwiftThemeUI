@@ -99,7 +99,11 @@ ThemeAliasReader(\.TextAccent) { color in
 
 
 **Additionally...**
-There is a `currentTheme` environment property wrapper available to you. However, the use of this property wrapper is not recommended as it prevents the ability for you to override the theme provided by the `ThemeManger` with the `.environment` view modifier. 
+
+There is also a `currentTheme` environment property wrapper available to you in situations where you'd prefer to not use one of the aforementioned theme readers. 
+
+> [!NOTE]  
+> Use of this property wrapper prevents the ability for you to override the theme provided by the `ThemeManger` in this view with the `.environment` view modifier in a parent view.
 
 ```swift
 struct ContentView: View {
