@@ -83,14 +83,14 @@ Text("Hello World")
 ## Usage Without Modifiers
 If you come across a situation where a modifier is not available for your intended purpose, you can still use your theme and alias tokens by gaining access to the current theme object through the use of the `ThemeReader` and `ThemeAliasReader` respecitively.
 
-```
+```swift
 ThemeReader { theme in
   Text("Hello World")
     .foregroundColor(theme.TextAccent)
 }
 ```
 
-```
+```swift
 ThemeAliasReader(\.TextAccent) { color in
   Text("Hello World")
     .foregroundColor(color)
