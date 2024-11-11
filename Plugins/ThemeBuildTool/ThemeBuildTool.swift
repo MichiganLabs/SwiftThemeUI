@@ -10,18 +10,16 @@ struct ThemeBuilderPlugin: BuildToolPlugin {
       
     // Check if the generated file exists and is up-to-date
     let fileManager = FileManager.default
-    if fileManager.fileExists(atPath: generatedFile.string) {
-      let configAttributes = try fileManager.attributesOfItem(atPath: configJSON.string)
-      let generatedAttributes = try fileManager.attributesOfItem(atPath: generatedFile.string)
-    
-      if
-        let configModificationDate = configAttributes[.modificationDate] as? Date,
-        let generatedModificationDate = generatedAttributes[.modificationDate] as? Date,
-        generatedModificationDate >= configModificationDate
-      {
-        // Generated file is up-to-date, no need to run the build command
-        return []
-      }
+    let configAttributes = try fileManager.attributesOfItem(atPath: configJSON.string)
+    let generatedAttributes = try fileManager.attributesOfItem(atPath: generatedFile.string)
+
+    if
+      let configModificationDate = configAttributes[.modificationDate] as? Date,
+      let generatedModificationDate = generatedAttributes[.modificationDate] as? Date,
+      generatedModificationDate >= configModificationDate
+    {
+      // Generated file is up-to-date, no need to run the build command
+      return []
     }
 
     return [
