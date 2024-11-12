@@ -5,31 +5,21 @@ import PackagePlugin
 struct ThemeBuilderPlugin: BuildToolPlugin {
   func createBuildCommands(context: PackagePlugin.PluginContext, target: PackagePlugin.Target) async throws -> [PackagePlugin.Command] {
 
-    let configJSON = target.directory.appending("ThemeConfig.json")
-    let generatedFile = context.pluginWorkDirectory.appending("Generated.swift")
+    let configPath = target.directory.appending("ThemeConfig.json")
+    let outputPath = context.pluginWorkDirectory.appending("Generated.swift")
       
-    // Check if the generated file exists and is up-to-date
-    let fileManager = FileManager.default
-    let configAttributes = try fileManager.attributesOfItem(atPath: configJSON.string)
-    let generatedAttributes = try fileManager.attributesOfItem(atPath: generatedFile.string)
-
-    if
-      let configModificationDate = configAttributes[.modificationDate] as? Date,
-      let generatedModificationDate = generatedAttributes[.modificationDate] as? Date,
-      generatedModificationDate >= configModificationDate
-    {
-      // Generated file is up-to-date, no need to run the build command
-      return []
-    }
-
+    // `buildCommand` will be incorporated into the build system's command graph and will run if any of the
+    // output files are missing or if the contents of any of the input files have changed since the last
+    // time the command ran.
     return [
+        // runs a command when any of its output files are needed by the build, but are out of date
       .buildCommand(
         displayName: "Generate Theme Files",
-        executable: try context.tool(named: "CodeGenerator").path,
-        arguments: [configJSON, generatedFile],
+        executable: try context.tool(named: "ThemeGenerator").path,
+        arguments: [configPath, outputPath],
         environment: [:],
-        inputFiles: [configJSON],
-        outputFiles: [generatedFile]
+        inputFiles: [configPath], // Used to observe changes to the config file
+        outputFiles: [outputPath]
       ),
     ]
   }

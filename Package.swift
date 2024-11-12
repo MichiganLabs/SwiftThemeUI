@@ -5,39 +5,39 @@ let package = Package(
     name: "SwiftThemeUI",
     platforms: [
         .iOS(.v16),
-        .macOS(.v12),
+        .macOS(.v13),
     ],
     products: [
         .plugin(name: "ThemeBuildTool", targets: ["ThemeBuildTool"]),
-        .library(name: "ExampleApp", targets: ["SwiftThemeUI"])
+        .library(name: "ExampleApp", targets: ["ExampleApp"])
     ],
     dependencies: [
-      .package(url: "https://github.com/stencilproject/Stencil.git", from: "0.15.1")
+      .package(url: "https://github.com/stencilproject/Stencil.git", from: "0.15.1"),
+      .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.0")
     ],
     targets: [
-        .target(
-            name: "SwiftThemeUI",
-            plugins: [
-              .plugin(name: "ThemeBuildTool"),
-            ]
-        ),
         .plugin(
             name: "ThemeBuildTool",
             capability: .buildTool(),
             dependencies: [
-              "CodeGenerator",
+              "ThemeGenerator",
             ]
         ),
         .executableTarget(
-            name: "CodeGenerator",
+            name: "ThemeGenerator",
             dependencies: [
-              "Stencil"
+              "Stencil",
+              .product(name: "ArgumentParser", package: "swift-argument-parser")
             ],
             resources: [.process("Resources")]
         ),
-        .testTarget(
-            name: "SwiftThemeUITests",
-            dependencies: ["SwiftThemeUI"]
+        
+        // Example setup when using build tool plugin
+        .target(
+            name: "ExampleApp",
+            plugins: [
+              .plugin(name: "ThemeBuildTool"),
+            ]
         ),
     ]
 )
